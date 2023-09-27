@@ -1,0 +1,5 @@
+psycopg2==2.9.7
+#BaseModel==20230925.733
+uvicorn==0.12.2
+status==0.2.5
+#CORSMiddleware==latest
