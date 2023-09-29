@@ -18,7 +18,7 @@ class Book(BaseModel):
     authors: str = None
     thumbnail: str = None
     state: int     # 0 = Completed, 1 = Reading, 2 = Whishlist
-    rating: int = None
+    rating: int = 0
 
 
 class UpdateRatingRequestBody(BaseModel):
@@ -93,8 +93,8 @@ async def new_book(book: Book):
         host="0.0.0.0",
     )
     cur = conn.cursor()
-    cur.execute("INSERT INTO book (volume_id, title, authors, thumbnail, state) VALUES (%s, %s, %s, %s, %s)",
-                (book.volume_id, book.title, book.authors, book.thumbnail, book.state))
+    cur.execute("INSERT INTO book (volume_id, title, authors, thumbnail, state, rating) VALUES (%s, %s, %s, %s, %s, %s)",
+                (book.volume_id, book.title, book.authors, book.thumbnail, book.state, book.rating))
     conn.commit()
     cur.close()
     conn.close()
